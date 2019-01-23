@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome ! - {{ parent() }}{% endblock %}
+
+{% block body %}
+<header class="masthead text-center text-white d-flex">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1>Maecenas semper vel turpis sed.</h1>
+                <hr>
+            </div>
+            <div class="col-lg-8 mx-auto">
+                <p class="text-faded mb-5">
+                    Nunc consequat velit enim. Pellentesque at justo in orci mattis accumsan at quis ligula.
+                    Curabitur ut turpis est. Praesent rhoncus purus eu ex ullamcorper, ut ullamcorper velit placerat.
+                </p>
+                <a class="btn btn-danger btn-xl js-scroll-trigger" href="#about">
+                    <i class="fas fa-chevron-down mr-2"></i> More informations
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <h2>About us</h2>
+                <p class="py-3">
+                    Sed pretium cursus pellentesque. Nam quis elit diam. Cras elementum quam a eros porta tempor.
+                Nam vel ultricies odio, a vehicula ex. Maecenas nec bibendum magna. Integer lectus orci, maximus
+                non eros vel, feugiat bibendum elit. Nullam pharetra, enim ut imperdiet consequat, elit odio lobortis
+                mauris, nec rutrum enim tellus sed metus. Aliquam erat volutpat. Sed volutpat molestie fringilla.
+                </p>
+                <p class="text-right">
+                    <a href="#" role="button" class="btn btn-danger">
+                        <i class="fas fa-book"></i>
+                        More informations
+                    </a>
+                </p>
+            </div>
+            <div class="col-lg-6 col-12 text-center">
+                <img src="https://via.placeholder.com/300" class="rounded img-thumbnail" alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</div>
+
+
+{% endblock %}
