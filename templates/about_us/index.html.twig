@@ -1,9 +1,33 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}About US{% endblock %}
+{% block title %}About Us - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1>Edit About Us</h1>
-    <hr>
-    {% include 'about_us/_form.html.twig' %}
+    <header>
+        <div class="container-fluid my-auto">
+            <div class="row">
+                <div class="col-12 secondary-header"
+                     style="background: url({{ vich_uploader_asset(aboutUs, 'imageHomeFile') }});
+                             background-position: center center;
+                             background-size: cover;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="p-lg-5 p-3 pt-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">{{ aboutUs.title }}</h1>
+                    <hr class="my-4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-secondary">{{ aboutUs.shortDescription }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

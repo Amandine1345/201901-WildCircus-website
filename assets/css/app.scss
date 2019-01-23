@@ -20,7 +20,6 @@ body {
 }
 
 section {
-  padding: 5rem;
   min-height: 50vh;
   justify-items: center;
 }
@@ -47,5 +46,14 @@ hr {
 }
 
 h2 {
+  padding-bottom: 0.5rem;
   border-bottom: 1px $colorHr dotted;
+}
+
+.secondary-header {
+  height:40vh;
+  overflow: hidden;
+  background-image: url("../picture/style/circus-home.jpg");
+  background-position: center center;
+  background-size: cover;
 }

@@ -17,7 +17,10 @@ class AboutUsType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('shortDescription', TextareaType::class)
-            ->add('imageHomeFile', FileType::class, ['data_class' => null])
+            ->add('imageHomeFile', FileType::class, [
+                'data_class' => null,
+                'required' => false
+            ])
         ;
     }
 
