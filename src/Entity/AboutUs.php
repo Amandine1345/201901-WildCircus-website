@@ -47,6 +47,11 @@ class AboutUs
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $fullDescription;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +110,18 @@ class AboutUs
     public function setImageHome(?string $imageHome): self
     {
         $this->imageHome = $imageHome;
+
+        return $this;
+    }
+
+    public function getFullDescription(): ?string
+    {
+        return $this->fullDescription;
+    }
+
+    public function setFullDescription(string $fullDescription): self
+    {
+        $this->fullDescription = $fullDescription;
 
         return $this;
     }

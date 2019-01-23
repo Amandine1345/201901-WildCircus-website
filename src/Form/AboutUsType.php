@@ -16,10 +16,20 @@ class AboutUsType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
-            ->add('shortDescription', TextareaType::class)
+            ->add('shortDescription', TextareaType::class, [
+                'attr' => [
+                    'rows' => 5
+                ]
+            ])
             ->add('imageHomeFile', FileType::class, [
                 'data_class' => null,
                 'required' => false
+            ])
+            ->add('fullDescription', TextareaType::class, [
+                'attr' => [
+                    'class' => 'summernote',
+                    'rows' => 30
+                ]
             ])
         ;
     }

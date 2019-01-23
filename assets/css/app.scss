@@ -26,6 +26,7 @@ section {
 
 h1,
 h2,
+h3,
 .navbar-brand {
   font-family: $fontBrand;
 }
@@ -45,7 +46,8 @@ hr {
   border-color: $colorHr;
 }
 
-h2 {
+h2,
+h3 {
   padding-bottom: 0.5rem;
   border-bottom: 1px $colorHr dotted;
 }
@@ -56,4 +58,9 @@ h2 {
   background-image: url("../picture/style/circus-home.jpg");
   background-position: center center;
   background-size: cover;
+}
+
+h3 {
+  margin-left: 1rem;
+  display: inline-block;
 }
