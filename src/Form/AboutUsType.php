@@ -18,12 +18,14 @@ class AboutUsType extends AbstractType
             ->add('title', TextType::class)
             ->add('shortDescription', TextareaType::class, [
                 'attr' => [
-                    'rows' => 5
+                    'rows' => 5,
+                    'maxlength' => '1000'
                 ]
             ])
             ->add('imageHomeFile', FileType::class, [
                 'data_class' => null,
-                'required' => false
+                'required' => false,
+                'help' => 'Format: .jpg, .jpeg, .png, .gif / Max Size: 500Ko / Width: 350px.'
             ])
             ->add('fullDescription', TextareaType::class, [
                 'attr' => [

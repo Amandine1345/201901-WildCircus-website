@@ -8,6 +8,8 @@ $fontBrand : 'Courgette', cursive;
 
 /* COLORS */
 $colorHr: #dc3545;
+$colorMastheadH1Shadow : #000000;
+$colorBackgroundMastheadP : rgba(0,0,0,0.8);
 
 body,
 html {
@@ -34,10 +36,19 @@ h3,
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("../picture/style/circus-home.jpg");
+  background-image: url("../picture/style/circus-homepage.jpg");
   background-position: center center;
   background-size: cover;
   height: 100vh;
+
+  h1 {
+    text-shadow: 2px 2px $colorMastheadH1Shadow;
+  }
+
+  p {
+    background-color: $colorBackgroundMastheadP;
+    border-radius: 5px;
+  }
 }
 
 hr {
@@ -55,7 +66,7 @@ h3 {
 .secondary-header {
   height:40vh;
   overflow: hidden;
-  background-image: url("../picture/style/circus-home.jpg");
+  background-image: url("../picture/style/circus-homepage.jpg");
   background-position: center center;
   background-size: cover;
 }

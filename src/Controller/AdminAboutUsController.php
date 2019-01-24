@@ -35,6 +35,7 @@ class AdminAboutUsController extends AbstractController
         }
 
         return $this->render('admin/about_us/index.html.twig', [
+            'aboutUs' => $aboutUs,
             'form' => $form->createView()
         ]);
     }
