@@ -19,11 +19,13 @@ class AdminAboutUsController extends AbstractController
 {
     /**
      * @Route("/about_us_edit", name="about_us_edit")
+     * @param Request $request
+     * @return Response
      */
     public function index(Request $request): Response
     {
         $aboutUs = $this->getDoctrine()->getManager()->getRepository(AboutUs::class)
-            ->findOneBy([],[],0,1);
+            ->findOneBy([], [], 0, 1);
 
         $form = $this->createForm(AboutUsType::class, $aboutUs);
         $form->handleRequest($request);

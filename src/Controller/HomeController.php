@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     public function index()
     {
         $aboutUs = $this->getDoctrine()->getManager()->getRepository(AboutUs::class)
-            ->findOneBy([],[],0,1);
+            ->findOneBy([], [], 0, 1);
 
         return $this->render('home/index.html.twig', [
             'aboutUs' => $aboutUs

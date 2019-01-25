@@ -14,7 +14,7 @@ class AboutUsController extends AbstractController
     public function index()
     {
         $aboutUs = $this->getDoctrine()->getManager()->getRepository(AboutUs::class)
-            ->findOneBy([],[],0,1);
+            ->findOneBy([], [], 0, 1);
 
         return $this->render('about_us/index.html.twig', [
             'aboutUs' => $aboutUs,

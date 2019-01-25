@@ -78,6 +78,25 @@ class AboutUs
      */
     private $fullDescription;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $imageBanner;
+
+    /**
+     * @Vich\UploadableField(mapping="images", fileNameProperty="imageBanner")
+     * @var File
+     * @Assert\Image(
+     *     maxSize = "1M",
+     *     minWidth = 1300,
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
+     *     maxSizeMessage = "Max size for this image is 1Mo.",
+     *     mimeTypesMessage = ".jpg, .png are allowed."
+     * )
+     */
+    private $imageBannerFile;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -148,6 +167,39 @@ class AboutUs
     public function setFullDescription(string $fullDescription): self
     {
         $this->fullDescription = $fullDescription;
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageBannerFile(): ?File
+    {
+        return $this->imageBannerFile;
+    }
+
+    /**
+     * @param File|null $imageBannerFile
+     * @throws \Exception
+     */
+    public function setImageBannerFile(File $imageBannerFile = null): void
+    {
+        $this->imageBannerFile = $imageBannerFile;
+
+        if ($imageBannerFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageBanner(): ?string
+    {
+        return $this->imageBanner;
+    }
+
+    public function setImageBanner(?string $imageBanner): self
+    {
+        $this->imageBanner = $imageBanner;
 
         return $this;
     }

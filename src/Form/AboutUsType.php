@@ -27,6 +27,11 @@ class AboutUsType extends AbstractType
                 'required' => false,
                 'help' => 'Format: .jpg, .jpeg, .png, .gif / Max Size: 500Ko / Width: 350px.'
             ])
+            ->add('imageBannerFile', FileType::class, [
+                'data_class' => null,
+                'required' => false,
+                'help' => 'Format: .jpg, .jpeg, .png / Max Size: 1Mo / Min-width: 1300px.'
+            ])
             ->add('fullDescription', TextareaType::class, [
                 'attr' => [
                     'class' => 'summernote',

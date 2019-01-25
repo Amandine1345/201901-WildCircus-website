@@ -1,6 +1,7 @@
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/admin.scss');
 require('codemirror/mode/htmlembedded/htmlembedded');
+require('codemirror/theme/monokai.css');
 require('@fortawesome/fontawesome-free/css/fontawesome.css');
 require('summernote/dist/summernote-bs4.css');
 
