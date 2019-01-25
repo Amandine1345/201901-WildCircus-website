@@ -4,10 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PerformerRepository")
  * @UniqueEntity("name")
+ * @Vich\Uploadable
  */
 class Performer
 {
@@ -20,6 +24,11 @@ class Performer
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = 5,
+     *     minMessage = "Title must be at least {{ limit }} characters long"
+     * )
      */
     private $name;
 
@@ -35,8 +44,23 @@ class Performer
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $picture;
+
+    /**
+     * @Vich\UploadableField(mapping="performers", fileNameProperty="picture")
+     * @var File
+     * @Assert\Image(
+     *     maxSize = "500K",
+     *     minWidth = 500,
+     *     maxWidth = 500,
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
+     *     maxSizeMessage = "Max size for this image is 500Ko.",
+     *     mimeTypesMessage = ".jpg or .png are allowed."
+     * )
+     */
+    private $pictureFile;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -90,10 +114,32 @@ class Performer
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * @param File|null $pictureFile
+     * @return Performer
+     * @throws \Exception
+     */
+    public function setPictureFile(File $pictureFile = null): Performer
+    {
+        $this->pictureFile = $pictureFile;
+        if ($pictureFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
         return $this;
     }
 }

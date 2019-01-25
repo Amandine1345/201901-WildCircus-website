@@ -4,40 +4,40 @@
 
 {% block body %}
     <h1>Performer index</h1>
+    <p class="text-right">
+        <a href="{{ path('performer_new') }}" role="button" class="btn btn-danger">
+            <i class="fas fa-user mr-2"></i>Create new
+        </a>
+    </p>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Biography</th>
-                <th>Birthday</th>
                 <th>Picture</th>
-                <th>UpdatedAt</th>
+                <th>Name</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for performer in performers %}
             <tr>
-                <td>{{ performer.id }}</td>
+                <td class="w-25">
+                    <img src="{{ vich_uploader_asset(performer, 'pictureFile') }}"
+                         class="rounded img-thumbnail" alt="" style="width:20%"/>
+                </td>
                 <td>{{ performer.name }}</td>
-                <td>{{ performer.biography }}</td>
-                <td>{{ performer.birthday ? performer.birthday|date('Y-m-d') : '' }}</td>
-                <td>{{ performer.picture }}</td>
-                <td>{{ performer.updatedAt ? performer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('performer_show', {'id': performer.id}) }}">show</a>
-                    <a href="{{ path('performer_edit', {'id': performer.id}) }}">edit</a>
+                    <a href="{{ path('performer_edit', {'id': performer.id}) }}">
+                        <i class="fas fa-edit mr-2"></i> Edit
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('performer_new') }}">Create new</a>
 {% endblock %}
