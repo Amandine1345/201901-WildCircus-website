@@ -43,24 +43,17 @@ class AdminPerformerController extends AbstractController
             $entityManager->persist($performer);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                'Your changes were saved!'
+            );
+
             return $this->redirectToRoute('performer_index');
         }
 
         return $this->render('admin/performer/new.html.twig', [
             'performer' => $performer,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="performer_show", methods={"GET"})
-     * @param Performer $performer
-     * @return Response
-     */
-    public function show(Performer $performer): Response
-    {
-        return $this->render('admin/performer/show.html.twig', [
-            'performer' => $performer,
         ]);
     }
 
@@ -77,6 +70,11 @@ class AdminPerformerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'success',
+                'Your changes were saved!'
+            );
 
             return $this->redirectToRoute('performer_index', [
                 'id' => $performer->getId(),

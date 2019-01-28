@@ -11,6 +11,8 @@ class CmsController extends AbstractController
 {
     /**
      * @Route("/cms/{cms_type}", name="cms")
+     * @param string $cms_type
+     * @return Response
      */
     public function index(string $cms_type) : Response
     {
