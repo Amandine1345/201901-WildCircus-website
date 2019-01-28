@@ -1,0 +1,9 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}CMS Page - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Edit {{ cmsPage.title }}</h1>
+    <hr>
+    {% include 'admin/admin_cms/_form.html.twig' %}
+{% endblock %}
