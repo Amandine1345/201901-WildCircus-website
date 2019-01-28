@@ -53,8 +53,10 @@ class Performer
      * @var File
      * @Assert\Image(
      *     maxSize = "500K",
-     *     minWidth = 500,
-     *     maxWidth = 500,
+     *     minWidth = 350,
+     *     maxWidth = 350,
+     *     minHeight = 350,
+     *     maxHeight = 350,
      *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
      *     maxSizeMessage = "Max size for this image is 500Ko.",
      *     mimeTypesMessage = ".jpg or .png are allowed."

@@ -26,7 +26,7 @@ class PerformerType extends AbstractType
             ->add('pictureFile', FileType::class, [
                 'data_class' => null,
                 'required' => false,
-                'help' => 'Format: .jpg, .jpeg, .png / Max Size: 500Ko / Width: 500px.'
+                'help' => 'Format: .jpg, .jpeg, .png / Max Size: 500Ko / Width/Height: 350 x 350px.'
             ])
         ;
     }

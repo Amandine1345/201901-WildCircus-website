@@ -8,6 +8,7 @@ $fontBrand : 'Courgette', cursive;
 
 /* COLORS */
 $colorHr: #dc3545;
+$colorWhite: #FFFFFF;
 $colorMastheadH1Shadow : #000000;
 $colorBackgroundMastheadP : rgba(0,0,0,0.8);
 
@@ -29,6 +30,9 @@ section {
 h1,
 h2,
 h3,
+h4,
+h5,
+h6,
 .navbar-brand {
   font-family: $fontBrand;
 }
@@ -74,4 +78,11 @@ h3 {
 h3 {
   margin-left: 1rem;
   display: inline-block;
+}
+
+.section-secondary {
+  h2 {
+    color: #FFF;
+    border-bottom: 1px $colorWhite dotted;
+  }
 }
