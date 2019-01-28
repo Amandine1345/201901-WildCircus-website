@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\AboutUs;
+use App\Entity\Cms;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,8 +13,10 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $aboutUs = $this->getDoctrine()->getManager()->getRepository(AboutUs::class)
-            ->findOneBy([], [], 0, 1);
+        $cms = new Cms();
+
+        $aboutUs = $this->getDoctrine()->getManager()->getRepository(Cms::class)
+            ->findOneBy(['cmsType' => $cms->getCmsTypeKey('aboutus')]);
 
         return $this->render('home/index.html.twig', [
             'aboutUs' => $aboutUs
