@@ -7,8 +7,8 @@
         <div class="container-fluid my-auto">
             <div class="row">
                 <div class="col-12 secondary-header"
-                     style="background: url({{ vich_uploader_asset(aboutUs, 'imageBannerFile') }}) center center;
-                            background-size: cover;">
+                     style="background: url({{ vich_uploader_asset(cmsPage, 'imageBannerFile') }}) center center;
+                             background-size: cover;">
                 </div>
             </div>
         </div>
@@ -18,19 +18,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="text-center">{{ aboutUs.title }}</h1>
+                    <h1 class="text-center">{{ cmsPage.title }}</h1>
                     <hr class="my-4">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <p class="text-secondary">{{ aboutUs.shortDescription }}</p>
+                    <p class="text-secondary">{{ cmsPage.shortDescription }}</p>
                     <hr class="my-4">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    {{ aboutUs.fullDescription|raw }}
+                    {{ cmsPage.fullDescription|raw }}
                 </div>
             </div>
         </div>
