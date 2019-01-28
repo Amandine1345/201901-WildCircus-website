@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About Us - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <header>
+        <div class="container-fluid my-auto">
+            <div class="row">
+                <div class="col-12 secondary-header"
+                     style="background: url({{ vich_uploader_asset(cmsPage, 'imageBannerFile') }}) center center;
+                             background-size: cover;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="p-lg-5 p-3 pt-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">{{ cmsPage.title }}</h1>
+                    <hr class="my-4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-secondary">{{ cmsPage.shortDescription }}</p>
+                    <hr class="my-4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {{ cmsPage.fullDescription|raw }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

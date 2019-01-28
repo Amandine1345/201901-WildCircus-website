@@ -1,0 +1,77 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import url('https://fonts.googleapis.com/css?family=Courgette|Raleway');
+
+/* FONT */
+$fontBody : 'Raleway', Arial, sans-serif;
+$fontBrand : 'Courgette', cursive;
+
+/* COLORS */
+$colorHr: #dc3545;
+$colorMastheadH1Shadow : #000000;
+$colorBackgroundMastheadP : rgba(0,0,0,0.8);
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: $fontBody;
+}
+
+section {
+  min-height: 50vh;
+  justify-items: center;
+}
+
+h1,
+h2,
+h3,
+.navbar-brand {
+  font-family: $fontBrand;
+}
+
+header.masthead {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("../picture/style/circus-homepage.jpg");
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+
+  h1 {
+    text-shadow: 2px 2px $colorMastheadH1Shadow;
+  }
+
+  p {
+    background-color: $colorBackgroundMastheadP;
+    border-radius: 5px;
+  }
+}
+
+hr {
+  max-width: 50px;
+  border-width: 3px;
+  border-color: $colorHr;
+}
+
+h2,
+h3 {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px $colorHr dotted;
+}
+
+.secondary-header {
+  height:40vh;
+  overflow: hidden;
+  background-image: url("../picture/style/circus-homepage.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+h3 {
+  margin-left: 1rem;
+  display: inline-block;
+}
