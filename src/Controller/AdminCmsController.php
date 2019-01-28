@@ -40,7 +40,8 @@ class AdminCmsController extends AbstractController
 
         return $this->render('admin/admin_cms/index.html.twig', [
             'cmsPage' => $cmsPage,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'cmsType' => $cms_type
         ]);
     }
 }

@@ -17,6 +17,7 @@ class Cms
 {
     const CMS_TYPE = [
         0 => 'aboutus',
+        1 => 'performers'
     ];
 
     /**
@@ -220,5 +221,11 @@ class Cms
         $this->cmsType = $cmsType;
 
         return $this;
+    }
+
+    public function getAuthorizedCmsToViewInput(string $cms_type): bool
+    {
+        $cmsAuthorized = ['aboutus'];
+        return in_array($cms_type, $cmsAuthorized);
     }
 }
