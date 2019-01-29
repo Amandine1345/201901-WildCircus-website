@@ -35,12 +35,18 @@ class AdminCmsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                'Your changes were saved!'
+            );
+
             return $this->redirectToRoute('admin_cms', ['cms_type' => $cms_type]);
         }
 
         return $this->render('admin/admin_cms/index.html.twig', [
             'cmsPage' => $cmsPage,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'cmsType' => $cms_type
         ]);
     }
 }

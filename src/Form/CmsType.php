@@ -33,6 +33,7 @@ class CmsType extends AbstractType
                 'help' => 'Format: .jpg, .jpeg, .png / Max Size: 1Mo / Min-width: 1300px.'
             ])
             ->add('fullDescription', TextareaType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'summernote',
                     'rows' => 30

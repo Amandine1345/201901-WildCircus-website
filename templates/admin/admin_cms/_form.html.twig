@@ -1,4 +1,4 @@
-{{ form_start(form) }}
+{{ form_start(form, {'action': path('admin_cms', {'cms_type': cmsType})}) }}
 <div class="row border m-3 p-3">
     <div class="col-12">
         {{ form_row(form.title) }}
@@ -6,13 +6,19 @@
     <div class="col-12">
         {{ form_row(form.shortDescription, {'label': 'Short description for HomePage'}) }}
     </div>
-    <div class="col-lg-6 col-12">
-        {{ form_row(form.imageHomeFile, {'label': 'Image for HomePage'}) }}
-    </div>
-    <div class="col-lg-6 col-12 text-center">
-        <img src="{{ vich_uploader_asset(cmsPage, 'imageHomeFile') }}"
-             class="rounded img-thumbnail" alt=""/>
-    </div>
+    {% if cmsPage.authorizedCmsToViewInput(cmsType) %}
+        <div class="col-lg-6 col-12">
+            {{ form_row(form.imageHomeFile, {'label': 'Image for HomePage'}) }}
+        </div>
+        <div class="col-lg-6 col-12 text-center">
+            <img src="{{ vich_uploader_asset(cmsPage, 'imageHomeFile') }}"
+                 class="rounded img-thumbnail" alt=""/>
+        </div>
+    {% else %}
+        <div class="d-none">
+            {{ form_row(form.imageHomeFile, {'label': 'Image for HomePage'}) }}
+        </div>
+    {% endif %}
 </div>
 <hr>
 <div class="row border m-3 p-3">
@@ -24,11 +30,18 @@
              class="rounded img-thumbnail" alt=""/>
     </div>
 </div>
+{% if cmsPage.authorizedCmsToViewInput(cmsType) %}
 <div class="row border m-3 p-3">
+
     <div class="col-12">
         {{ form_row(form.fullDescription) }}
     </div>
 </div>
+{% else %}
+    <div class="d-none">
+        {{ form_row(form.fullDescription) }}
+    </div>
+{% endif %}
 <div class="text-center">
     <button class="btn btn-warning">{{ button_label|default('Save') }}</button>
 </div>
