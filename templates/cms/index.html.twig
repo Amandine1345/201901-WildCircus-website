@@ -30,7 +30,11 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    {{ cmsPage.fullDescription|raw }}
+                    {% if cmsType == 'performers' %}
+                        {% include 'performer/_list_performers.html.twig' %}
+                    {% else %}
+                        {{ cmsPage.fullDescription|raw }}
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -54,30 +54,7 @@
                     <h2>Performers</h2>
                 </div>
                 <div class="col-12">
-                    <div class="row">
-                        {% for performer in performers %}
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="card border-secondary mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-danger">{{ performer.name }}</h5>
-                                        <p class="text-center mb-0">
-                                            <img src="{{ vich_uploader_asset(performer, 'pictureFile') }}"
-                                                 alt="{{ performer.name }}"
-                                                 class="rounded-circle border w-50"
-                                            />
-                                        </p>
-                                        <div class="card-text text-center mt-3">
-                                            <button type="button" class="btn" data-toggle="modal"
-                                                    data-target="#performerModal"
-                                                    data-performer="{{ performer.id }}" >
-                                                <i class="fas fa-plus-square text-danger fa-2x"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
+                    {% include 'performer/_list_performers.html.twig' %}
                     <div class="row">
                         <div class="col-12 mt-3 text-center">
                             <a href="{{ path('cms', {'cms_type': 'performers'}) }}" role="button" class="btn btn-dark">
@@ -89,6 +66,6 @@
         </div>
     </section>
 
-    {% include 'performer/_modal_performers.html.twig' %}
+    {#{% include 'performer/_modal_performers.html.twig' %}#}
 
 {% endblock %}
