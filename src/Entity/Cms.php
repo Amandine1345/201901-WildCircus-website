@@ -17,7 +17,8 @@ class Cms
 {
     const CMS_TYPE = [
         0 => 'aboutus',
-        1 => 'performers'
+        1 => 'performers',
+        2 => 'performances'
     ];
 
     /**
