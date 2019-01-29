@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Performer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,6 +24,7 @@ class PerformerType extends AbstractType
                 ]
             ])
             ->add('birthday', BirthdayType::class)
+            ->add('country', CountryType::class)
             ->add('pictureFile', FileType::class, [
                 'data_class' => null,
                 'required' => false,

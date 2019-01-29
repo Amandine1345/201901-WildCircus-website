@@ -16,11 +16,14 @@ $("#performerModal").on('show.bs.modal', function (event) {
         .then(result => {
             let birthdayFull = result.birthday;
             let pathPicturePerformers = $('.performer-image').data('path');
-
             $('.modal-title').text(result.name);
             $('.performer-birthday').text(birthdayFull.split('T')[0]);
             $('.performer-biography').text(result.biography);
             $('.performer-image').attr('src', pathPicturePerformers + result.picture);
             $('.performer-image').attr('alt', result.name);
-        });
+            $('#country-flag').removeClass();
+            $('#country-flag').addClass('border flag-icon flag-icon-' + result.countryIso.toLowerCase());
+            $('.performer-country').text(result.countryName);
+        })
+        .catch(console.error.bind(console));
 });

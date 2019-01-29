@@ -70,6 +70,16 @@ class Performer
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=5)
+     */
+    private $countryIso;
+
+    /**
+     * @var string
+     */
+    private $countryName;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,6 +152,36 @@ class Performer
         if ($pictureFile) {
             $this->updatedAt = new \DateTime('now');
         }
+        return $this;
+    }
+
+    public function getCountryIso(): ?string
+    {
+        return $this->countryIso;
+    }
+
+    public function setCountryIso(string $countryIso): self
+    {
+        $this->countryIso = $countryIso;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountryName() : ?string
+    {
+        return $this->countryName;
+    }
+
+    /**
+     * @param mixed $countryName
+     * @return Performer
+     */
+    public function setCountryName(string $countryName): Performer
+    {
+        $this->countryName = $countryName;
         return $this;
     }
 }
