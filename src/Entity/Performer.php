@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -23,7 +25,7 @@ class Performer
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank()
      * @Assert\Length(
      *     min = 5,
@@ -79,6 +81,16 @@ class Performer
      * @var string
      */
     private $countryName;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Performance", mappedBy="performers")
+     */
+    private $performances;
+
+    public function __construct()
+    {
+        $this->performances = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -182,6 +194,34 @@ class Performer
     public function setCountryName(string $countryName): Performer
     {
         $this->countryName = $countryName;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Performance[]
+     */
+    public function getPerformances(): Collection
+    {
+        return $this->performances;
+    }
+
+    public function addPerformance(Performance $performance): self
+    {
+        if (!$this->performances->contains($performance)) {
+            $this->performances[] = $performance;
+            $performance->addPerformer($this);
+        }
+
+        return $this;
+    }
+
+    public function removePerformance(Performance $performance): self
+    {
+        if ($this->performances->contains($performance)) {
+            $this->performances->removeElement($performance);
+            $performance->removePerformer($this);
+        }
+
         return $this;
     }
 }

@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+<div class="row border m-3 p-3">
+    <div class="col-12">
+    {{ form_widget(form) }}
+    </div>
+</div>
+<div class="text-center">
+    <button class="btn btn-warning">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}
