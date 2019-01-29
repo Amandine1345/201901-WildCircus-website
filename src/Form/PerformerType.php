@@ -24,7 +24,7 @@ class PerformerType extends AbstractType
                 ]
             ])
             ->add('birthday', BirthdayType::class)
-            ->add('country', CountryType::class)
+            ->add('countryIso', CountryType::class)
             ->add('pictureFile', FileType::class, [
                 'data_class' => null,
                 'required' => false,
