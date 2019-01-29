@@ -1,0 +1,38 @@
+<div class="modal fade" id="performerModal" tabindex="-1" role="dialog" aria-labelledby="performerModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="performerModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <p class="text-center mb-0">
+                            <img src="" alt="" class="rounded-circle border w-75 performer-image"
+                                 data-path="{{ pathPicturePerformers }}"/>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-12 mt-lg-0 mt-4">
+                        <p><span class="font-weight-bold">Birthday :</span>
+                            <span class="performer-birthday"></span></p>
+                        <p><span class="font-weight-bold">Country :</span>
+                            <span id="country-flag" class="flag-icon flag-icon-fr"></span>
+                            <span class="performer-country"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="p-0 pt-2 performer-biography"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

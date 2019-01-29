@@ -1,0 +1,15 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Performer - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Create new Performer</h1>
+    <p>
+        <a href="{{ path('performer_index') }}" role="button" class="btn btn-secondary">
+            <i class="fas fa-chevron-left mr-2"></i> Back to list
+        </a>
+    </p>
+
+    {{ include('admin/performer/_form.html.twig') }}
+
+{% endblock %}
