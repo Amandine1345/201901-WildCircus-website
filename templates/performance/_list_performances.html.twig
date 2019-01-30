@@ -1,0 +1,18 @@
+{% for performance in performances %}
+    <div class="row border mb-5 p-3 rounded shadow">
+        <div class="col-12">
+            <h2 id="{{ performance.id }}">{{ performance.name }}</h2>
+        </div>
+        <div class="col-lg-6 col-12">
+            <p>
+                <img src="{{ vich_uploader_asset(performance, 'pictureFile') }}" alt="{{ performance.name }}"
+                     class="img-fluid img-thumbnail">
+            </p>
+        </div>
+        <div class="col-lg-6 col-12">
+            <p>{{ performance.description }}</p>
+        </div>
+    </div>
+{% else %}
+    <p>No performance...</p>
+{% endfor %}

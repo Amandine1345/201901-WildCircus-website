@@ -49,6 +49,10 @@ class Performance
      * @var File
      * @Assert\Image(
      *     maxSize = "1M",
+     *     minWidth = 450,
+     *     maxWidth = 450,
+     *     minHeight = 250,
+     *     maxHeight = 250,
      *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
      *     maxSizeMessage = "Max size for this image is 500Ko.",
      *     mimeTypesMessage = ".jpg or .png are allowed."

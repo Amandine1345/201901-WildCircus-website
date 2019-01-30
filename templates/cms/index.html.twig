@@ -32,6 +32,8 @@
                 <div class="col-12">
                     {% if cmsType == 'performers' %}
                         {% include 'performer/_list_performers.html.twig' %}
+                    {% elseif cmsType == 'performances' %}
+                        {% include 'performance/_list_performances.html.twig' %}
                     {% else %}
                         {{ cmsPage.fullDescription|raw }}
                     {% endif %}

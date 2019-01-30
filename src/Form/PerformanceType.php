@@ -24,7 +24,8 @@ class PerformanceType extends AbstractType
             ])
             ->add('pictureFile', FileType::class, [
                 'data_class' => null,
-                'help' => 'Format: .jpg, .jpeg, .png, .gif / Max Size: 500Ko / Width: A DEFINIR.'
+                'required' => false,
+                'help' => 'Format: .jpg, .jpeg, .png, .gif / Max Size: 500Ko / Width/Height: 450 x 250px.'
             ])
         ;
     }
