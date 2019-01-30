@@ -13,22 +13,21 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th class="w-25">Picture</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Picture</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for performance in performances %}
             <tr>
-                <td>{{ performance.id }}</td>
-                <td>{{ performance.name }}</td>
-                <td>{{ performance.description }}</td>
-                <td>{{ performance.picture }}</td>
                 <td>
-                    <a href="{{ path('performance_edit', {'id': performance.id}) }}">edit</a>
+                    <img src="{{ vich_uploader_asset(performance, 'pictureFile') }}"
+                         class="rounded img-thumbnail" alt="" class="img-fluid"/></td>
+                <td>{{ performance.name }}</td>
+                <td>
+                    <a href="{{ path('performance_edit', {'id': performance.id}) }}">
+                        <i class="fas fa-edit mr-2"></i> Edit</a>
                 </td>
             </tr>
         {% else %}

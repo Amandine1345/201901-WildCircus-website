@@ -1,7 +1,17 @@
 {{ form_start(form) }}
 <div class="row border m-3 p-3">
     <div class="col-12">
-    {{ form_widget(form) }}
+        {{ form_row(form.name) }}
+    </div>
+    <div class="col-12">
+        {{ form_row(form.description) }}
+    </div>
+    <div class="col-lg-6 col-12">
+        {{ form_row(form.pictureFile) }}
+    </div>
+    <div class="col-lg-6 col-12 text-center">
+        <img src="{{ vich_uploader_asset(performance, 'pictureFile') }}"
+             class="rounded img-thumbnail" alt=""/>
     </div>
 </div>
 <div class="text-center">
