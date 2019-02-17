@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cms;
+use App\Entity\Performance;
 use App\Entity\Performer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,11 +31,15 @@ class CmsController extends AbstractController
         $pathPicturePerformers = $uploaderHelper->asset($performers[0], 'pictureFile');
         $pathPicturePerformers = str_replace($performers[0]->getPicture(), '', $pathPicturePerformers);
 
+        $performances = $this->getDoctrine()->getManager()->getRepository(Performance::class)
+            ->findAll();
+
         return $this->render('cms/index.html.twig', [
             'cmsPage' => $cmsPage,
             'cmsType' => $cms_type,
             'performers' => $performers,
-            'pathPicturePerformers' => $pathPicturePerformers
+            'pathPicturePerformers' => $pathPicturePerformers,
+            'performances' => $performances
         ]);
     }
 }

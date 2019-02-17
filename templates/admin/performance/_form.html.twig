@@ -4,30 +4,23 @@
         {{ form_row(form.name) }}
     </div>
     <div class="col-12">
-        {{ form_row(form.biography) }}
+        {{ form_row(form.description) }}
     </div>
-    <div class="col-lg-6 col-12">
-        {{ form_row(form.countryIso) }}
-    </div>
-    <div class="col-lg-6 border-left border-secondary col-12">
-        {{ form_row(form.birthday) }}
-    </div>
-</div>
-<hr>
-<div class="row border m-3 p-3">
     <div class="col-lg-6 col-12">
         {{ form_row(form.pictureFile) }}
     </div>
     <div class="col-lg-6 col-12 text-center">
-        <img src="{{ vich_uploader_asset(performer, 'pictureFile') }}"
+        <img src="{{ vich_uploader_asset(performance, 'pictureFile') }}"
              class="rounded img-thumbnail" alt=""/>
     </div>
 </div>
+
 <div class="row border m-3 p-3">
     <div class="col-12">
-        {{ form_row(form.performances) }}
+        {{ form_row(form.performers) }}
     </div>
 </div>
+
 <div class="text-center">
     <button class="btn btn-warning">{{ button_label|default('Save') }}</button>
 </div>

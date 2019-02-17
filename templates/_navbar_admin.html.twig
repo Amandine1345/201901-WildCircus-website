@@ -10,8 +10,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-               <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ path('performer_index') }}">Performers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ path('performance_index') }}">Performances</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -21,8 +24,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarCMS">
                         <a class="dropdown-item" href="{{ path('admin_cms', {'cms_type': 'aboutus'}) }}">About Us</a>
-                        <a class="dropdown-item" href="{{ path('admin_cms', {'cms_type': 'performers'}) }}">Performers</a>
-                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"
+                           href="{{ path('admin_cms', {'cms_type': 'performers'}) }}">Performers</a>
+                        <a class="dropdown-item"
+                           href="{{ path('admin_cms', {'cms_type': 'performances'}) }}">Performances</a>
                     </div>
                 </li>
 

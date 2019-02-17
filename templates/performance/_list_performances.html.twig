@@ -1,0 +1,34 @@
+{% for performance in performances %}
+    <div class="row border mb-5 p-3 rounded shadow">
+        <div class="col-12">
+            <h2 id="{{ performance.id }}">{{ performance.name }}</h2>
+        </div>
+        <div class="col-lg-6 col-12">
+            <p>
+                <img src="{{ vich_uploader_asset(performance, 'pictureFile') }}" alt="{{ performance.name }}"
+                     class="img-fluid img-thumbnail">
+            </p>
+        </div>
+        <div class="col-lg-6 col-12">
+            <p>{{ performance.description }}</p>
+            {% if performance.performers|length > 0 %}
+                <h3>Performers</h3>
+                <ul>
+                    {% for performer in performance.performers %}
+                        <li>
+                            <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#performerModal"
+                                    data-performer="{{ performer.id }}">
+
+                                {{ performer.name }}
+                            </button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    {% include 'performer/_modal_performers.html.twig' %}
+{% else %}
+    <p>No performance...</p>
+{% endfor %}

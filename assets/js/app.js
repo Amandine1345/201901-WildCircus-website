@@ -15,6 +15,14 @@ $("#performerModal").on('show.bs.modal', function (event) {
         .then(res => res.json())
         .then(result => {
             let birthdayFull = result.birthday;
+
+            let performances = result.performances;
+            let performancesString = '<ul>';
+            performances.forEach(v => {
+                performancesString += '<li>' + v.name + '</li>';
+            });
+            performancesString += '</ul>';
+
             let pathPicturePerformers = $('.performer-image').data('path');
             $('.modal-title').text(result.name);
             $('.performer-birthday').text(birthdayFull.split('T')[0]);
@@ -24,6 +32,7 @@ $("#performerModal").on('show.bs.modal', function (event) {
             $('#country-flag').removeClass();
             $('#country-flag').addClass('border flag-icon flag-icon-' + result.countryIso.toLowerCase());
             $('.performer-country').text(result.countryName);
+            $('.performer-performances').html(performancesString);
         })
         .catch(console.error.bind(console));
 });
