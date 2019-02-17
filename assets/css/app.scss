@@ -12,6 +12,7 @@ $colorHr: #dc3545;
 $colorWhite: #FFFFFF;
 $colorMastheadH1Shadow : #000000;
 $colorBackgroundMastheadP : rgba(0,0,0,0.8);
+$colorBackgroundPerformance : rgb(220, 53, 69);
 
 body,
 html {
@@ -83,7 +84,30 @@ h3 {
 
 .section-secondary {
   h2 {
-    color: #FFF;
+    color: $colorWhite;
     border-bottom: 1px $colorWhite dotted;
+  }
+}
+
+.performance-caption {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $colorBackgroundPerformance;
+
+  h3 {
+    margin-top: 20%;
+    margin-bottom: 0;
+    border: 0;
+  }
+
+  hr {
+    border-color: white;
+  }
+
+  &:hover {
+    opacity: 1
   }
 }

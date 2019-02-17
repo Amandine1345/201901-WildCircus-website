@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Performance;
 use App\Entity\Performer;
 use App\Entity\Cms;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +27,9 @@ class HomeController extends AbstractController
         $performers = $this->getDoctrine()->getManager()->getRepository(Performer::class)
             ->findAll();
 
+        $performances = $this->getDoctrine()->getManager()->getRepository(Performance::class)
+            ->findBy([], ['name' => 'ASC']);
+
         shuffle($performers);
         $performers = array_slice($performers, 0, 4);
 
@@ -35,7 +39,8 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'aboutUs' => $aboutUs,
             'performers' => $performers,
-            'pathPicturePerformers' => $pathPicturePerformers
+            'pathPicturePerformers' => $pathPicturePerformers,
+            'performances' => $performances
         ]);
     }
 }

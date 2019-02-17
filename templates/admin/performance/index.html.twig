@@ -1,0 +1,41 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Performance index - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Performance index</h1>
+    <p class="text-right">
+        <a href="{{ path('performance_new') }}" role="button" class="btn btn-danger">
+            <i class="fas fa-dumbbell mr-2"></i>Create new
+        </a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="w-25">Picture</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for performance in performances %}
+            <tr>
+                <td>
+                    <img src="{{ vich_uploader_asset(performance, 'pictureFile') }}"
+                         class="rounded img-thumbnail" alt="" class="img-fluid"/></td>
+                <td>{{ performance.name }}</td>
+                <td>
+                    <a href="{{ path('performance_edit', {'id': performance.id}) }}">
+                        <i class="fas fa-edit mr-2"></i> Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
