@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Performance;
 use App\Entity\Performer;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -29,6 +32,16 @@ class PerformerType extends AbstractType
                 'data_class' => null,
                 'required' => false,
                 'help' => 'Format: .jpg, .jpeg, .png / Max Size: 500Ko / Width/Height: 350 x 350px.'
+            ])
+            ->add('performances', EntityType::class, [
+                'class' => Performance::class,
+                'choice_label' => 'name',
+                'expanded' => true,
+                'multiple' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.name', 'ASC');
+                }
             ])
         ;
     }

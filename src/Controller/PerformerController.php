@@ -35,7 +35,13 @@ class PerformerController extends AbstractController
         $normalizer = new ObjectNormalizer($classMetadataFactory);
 
         // Serialize Properties with Object Instances (e.g: DateTime)
-        $callback = function ($innerObject, $outerObject, string $attributeName, string $format = null, array $context = []) {
+        $callback = function (
+            $innerObject,
+            $outerObject,
+            string $attributeName,
+            string $format = null,
+            array $context = []
+        ) {
             return $innerObject instanceof \DateTime ? $innerObject->format(\DateTime::ISO8601) : '';
         };
 
