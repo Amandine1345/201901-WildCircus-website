@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\OrderBy;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PerformanceRepository")
@@ -67,7 +69,8 @@ class Performance
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Performer", inversedBy="performances")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Performer", inversedBy="performances", cascade={"persist"})
+     * @OrderBy({"name" = "ASC"})
      */
     private $performers;
 
@@ -76,11 +79,19 @@ class Performance
         $this->performers = new ArrayCollection();
     }
 
+    /**
+     * @Groups("performance")
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups("performance")
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;

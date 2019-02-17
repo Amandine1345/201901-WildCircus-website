@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PerformerRepository")
@@ -84,6 +86,7 @@ class Performer
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Performance", mappedBy="performers")
+     * @OrderBy({"name" = "ASC"})
      */
     private $performances;
 
@@ -92,11 +95,19 @@ class Performer
         $this->performances = new ArrayCollection();
     }
 
+    /**
+     * @Groups("performance")
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups("performance")
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
@@ -109,6 +120,10 @@ class Performer
         return $this;
     }
 
+    /**
+     * @Groups("performance")
+     * @return string|null
+     */
     public function getBiography(): ?string
     {
         return $this->biography;
@@ -121,6 +136,10 @@ class Performer
         return $this;
     }
 
+    /**
+     * @Groups("performance")
+     * @return \DateTimeInterface|null
+     */
     public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;
@@ -133,6 +152,10 @@ class Performer
         return $this;
     }
 
+    /**
+     * @Groups("performance")
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -167,6 +190,10 @@ class Performer
         return $this;
     }
 
+    /**
+     * @Groups("performance")
+     * @return string|null
+     */
     public function getCountryIso(): ?string
     {
         return $this->countryIso;
@@ -180,6 +207,7 @@ class Performer
     }
 
     /**
+     * @Groups("performance")
      * @return mixed
      */
     public function getCountryName() : ?string
@@ -198,6 +226,7 @@ class Performer
     }
 
     /**
+     * @Groups("performance")
      * @return Collection|Performance[]
      */
     public function getPerformances(): Collection

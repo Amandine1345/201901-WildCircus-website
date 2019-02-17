@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Performance;
+use App\Entity\Performer;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +30,16 @@ class PerformanceType extends AbstractType
                 'data_class' => null,
                 'required' => false,
                 'help' => 'Format: .jpg, .jpeg, .png, .gif / Max Size: 500Ko / Width/Height: 450 x 250px.'
+            ])
+            ->add('performers', EntityType::class, [
+                'class' => Performer::class,
+                'choice_label' => 'name',
+                'expanded' => true,
+                'multiple' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.name', 'ASC');
+                }
             ])
         ;
     }
