@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cms;
 use App\Entity\Performance;
 use App\Entity\Performer;
+use App\Form\ContactUsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,12 +35,15 @@ class CmsController extends AbstractController
         $performances = $this->getDoctrine()->getManager()->getRepository(Performance::class)
             ->findAll();
 
+        $formContactUs = $this->createForm(ContactUsType::class);
+
         return $this->render('cms/index.html.twig', [
             'cmsPage' => $cmsPage,
             'cmsType' => $cms_type,
             'performers' => $performers,
             'pathPicturePerformers' => $pathPicturePerformers,
-            'performances' => $performances
+            'performances' => $performances,
+            'contactUs' => $formContactUs->createView()
         ]);
     }
 }
