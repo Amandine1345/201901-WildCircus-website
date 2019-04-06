@@ -1,4 +1,4 @@
-<section class="bg-danger section-secondary p-lg-5 p-3 pt-5" id="contact-us">
+<section class="contact-us bg-danger section-secondary p-lg-5 p-3 pt-5" id="contact-us">
     <div class="container">
         <div class="row">
             <div class="col-12 mb-3">
@@ -7,7 +7,7 @@
         </div>
 
         <div class="row">
-            <div class="col-3 px-0">
+            <div class="col-lg-3 col-12 px-0">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -32,9 +32,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-danger"><i class="far fa-grin-wink"></i> Follow us</h5>
                                     <div class="card-text mt-3">
-                                        <p class="mb-0"><i class="fab fa-facebook-f"></i> Facebook</p>
-                                        <p class="mb-0"><i class="fab fa-twitter"></i> Twitter</p>
-                                        <p class="mb-0"><i class="fab fa-instagram"></i> Instagram</p>
+                                        <p class="mb-0 btn"><i class="fab fa-facebook-f"></i> Facebook</p>
+                                        <p class="mb-0 btn"><i class="fab fa-twitter"></i> Twitter</p>
+                                        <p class="mb-0 btn"><i class="fab fa-instagram"></i> Instagram</p>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-lg-6 col-12 mt-lg-0 mt-3">
                 <div class="card border mb-3 shadow">
                     <div class="card-body pb-0">
                         <h5 class="card-title text-danger"><i class="far fa-envelope"></i> Send a message</h5>
@@ -70,24 +70,29 @@
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-12 mt-lg-0 mt-3">
                 <div class="card border mb-3 shadow">
                     <div class="card-body">
                         <h5 class="card-title text-danger"><i class="fas fa-ellipsis-h"></i></h5>
                         <div class="card-text">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="{{ path('cms', {'cms_type': 'aboutus'}) }}">About</a>
+                                    <a class="nav-link"
+                                       href="{{ path('cms', {'cms_type': 'aboutus'}) }}">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="{{ path('cms', {'cms_type': 'performers'}) }}">Performers</a>
+                                    <a class="nav-link"
+                                       href="{{ path('cms', {'cms_type': 'performers'}) }}">Performers</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="{{ path('cms', {'cms_type': 'performances'}) }}">Performances</a>
+                                    <a class="nav-link"
+                                       href="{{ path('cms', {'cms_type': 'performances'}) }}">Performances</a>
                                 </li>
-                                <li><hr></li>
+                                <li>
+                                    <hr>
+                                </li>
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="#">Terms & Conditions</a>
+                                    <a class="nav-link" href="#">Terms & Conditions</a>
                                 </li>
                             </ul>
                         </div>
