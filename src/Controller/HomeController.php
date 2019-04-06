@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Performance;
 use App\Entity\Performer;
 use App\Entity\Cms;
+use App\Form\ContactUsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,11 +37,14 @@ class HomeController extends AbstractController
         $pathPicturePerformers = $uploaderHelper->asset($performers[0], 'pictureFile');
         $pathPicturePerformers = str_replace($performers[0]->getPicture(), '', $pathPicturePerformers);
 
+        $formContactUs = $this->createForm(ContactUsType::class);
+
         return $this->render('home/index.html.twig', [
             'aboutUs' => $aboutUs,
             'performers' => $performers,
             'pathPicturePerformers' => $pathPicturePerformers,
-            'performances' => $performances
+            'performances' => $performances,
+            'contactUs' => $formContactUs->createView()
         ]);
     }
 }

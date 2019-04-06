@@ -28,7 +28,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <div class="card border mb-3 shadow">
+                            <div class="card border shadow">
                                 <div class="card-body">
                                     <h5 class="card-title text-danger"><i class="far fa-grin-wink"></i> Follow us</h5>
                                     <div class="card-text mt-3">
@@ -45,27 +45,26 @@
 
             <div class="col-6">
                 <div class="card border mb-3 shadow">
-                    <div class="card-body">
+                    <div class="card-body pb-0">
                         <h5 class="card-title text-danger"><i class="far fa-envelope"></i> Send a message</h5>
                         <div class="card-text mt-3">
-                            <p>
-                                <label>Name</label>
-                                <input type="mail" name="" value="">
-                            </p>
-                            <p>
-                                <label>Email address</label>
-                                <input type="mail" name="" value="">
-                            </p>
-                            <p>
-                                <label>Email address</label>
-                                <textarea></textarea>
-                            </p>
-
-                            <button type="button" class="btn btn-danger mx-auto">
-                                <i class="fab fa-telegram-plane"></i>
-                                Send
-                            </button>
-
+                            {{ form_start(contactUs, {'attr': {'id': 'form_contact_us'}}) }}
+                            {{ form_widget(contactUs) }}
+                            <div class="form-group text-center">
+                                <button class="btn btn-danger">
+                                    <i class="fab fa-telegram-plane mr-2"></i> {{ button_label|default('Send') }}
+                                </button>
+                                <p class="sending-in-progress btn btn-warning d-none mb-0">
+                                    <i class="fab fa-telegram-plane mr-2"></i> Sending in progress
+                                </p>
+                                <p class="message-sent btn btn-success d-none mb-0">
+                                    <i class="fab fa-telegram-plane mr-2"></i> Message sent !
+                                </p>
+                                <p class="message-sent-error btn btn-danger d-none mb-0">
+                                    <i class="fab fa-telegram-plane mr-2"></i> An error was occured :(
+                                </p>
+                            </div>
+                            {{ form_end(contactUs) }}
                         </div>
                     </div>
                 </div>
@@ -85,9 +84,6 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger" href="{{ path('cms', {'cms_type': 'performances'}) }}">Performances</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="#contact-us">Contact Us</a>
                                 </li>
                                 <li><hr></li>
                                 <li class="nav-item">
