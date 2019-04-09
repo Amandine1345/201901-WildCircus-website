@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Price;
+use App\Entity\PriceCategory;
 use App\Entity\PricePeriod;
 use App\Form\PriceType;
 use App\Repository\PriceRepository;
@@ -24,9 +25,13 @@ class PriceController extends AbstractController
         $pricePeriods = $this->getDoctrine()->getManager()->getRepository(PricePeriod::class)
             ->findBy([],['name' => 'ASC']);
 
+        $priceCategories = $this->getDoctrine()->getManager()->getRepository(PriceCategory::class)
+            ->findBy([],['name' => 'ASC']);
+
         return $this->render('/admin/price/index.html.twig', [
             'prices' => $priceRepository->findAll(),
             'pricePeriods' => $pricePeriods,
+            'priceCategories' => $priceCategories
         ]);
     }
 

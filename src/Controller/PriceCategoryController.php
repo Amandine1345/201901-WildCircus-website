@@ -2,31 +2,31 @@
 
 namespace App\Controller;
 
-use App\Entity\PricePeriod;
-use App\Form\PricePeriodType;
-use App\Repository\PricePeriodRepository;
+use App\Entity\PriceCategory;
+use App\Form\PriceCategoryType;
+use App\Repository\PriceCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("admin/price/period")
+ * @Route("/admin/price/category")
  */
-class PricePeriodController extends AbstractController
+class PriceCategoryController extends AbstractController
 {
     /**
-     * @Route("/new", name="price_period_new", methods={"GET","POST"})
+     * @Route("/new", name="price_category_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
-        $pricePeriod = new PricePeriod();
-        $form = $this->createForm(PricePeriodType::class, $pricePeriod);
+        $priceCategory = new PriceCategory();
+        $form = $this->createForm(PriceCategoryType::class, $priceCategory);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($pricePeriod);
+            $entityManager->persist($priceCategory);
             $entityManager->flush();
 
             $this->addFlash(
@@ -37,45 +37,40 @@ class PricePeriodController extends AbstractController
             return $this->redirectToRoute('price_index');
         }
 
-        return $this->render('/admin/price_period/new.html.twig', [
-            'price_period' => $pricePeriod,
+        return $this->render('admin/price_category/new.html.twig', [
+            'price_category' => $priceCategory,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="price_period_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="price_category_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, PricePeriod $pricePeriod): Response
+    public function edit(Request $request, PriceCategory $priceCategory): Response
     {
-        $form = $this->createForm(PricePeriodType::class, $pricePeriod);
+        $form = $this->createForm(PriceCategoryType::class, $priceCategory);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash(
-                'success',
-                'Your changes were saved!'
-            );
-
             return $this->redirectToRoute('price_index');
         }
 
-        return $this->render('/admin/price_period/edit.html.twig', [
-            'price_period' => $pricePeriod,
+        return $this->render('admin/price_category/edit.html.twig', [
+            'price_category' => $priceCategory,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="price_period_delete", methods={"DELETE"})
+     * @Route("/{id}", name="price_category_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, PricePeriod $pricePeriod): Response
+    public function delete(Request $request, PriceCategory $priceCategory): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$pricePeriod->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$priceCategory->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($pricePeriod);
+            $entityManager->remove($priceCategory);
             $entityManager->flush();
 
             $this->addFlash(

@@ -1,0 +1,13 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Customer category{% endblock %}
+
+{% block body %}
+    <h1>Create new Customer category</h1>
+    <p>
+        <a href="{{ path('price_index') }}" role="button" class="btn btn-secondary">
+            <i class="fas fa-chevron-left mr-2"></i> Back to list
+        </a>
+    </p>
+    {{ include('admin/price_category/_form.html.twig') }}
+{% endblock %}
