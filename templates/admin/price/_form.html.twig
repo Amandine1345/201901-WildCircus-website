@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+<div class="row border m-3 p-3">
+    <div class="col-12 mb-3">
+        {{ form_row(form.price) }}
+    </div>
+    <div class="col-lg-6 col-12 border-right">
+        {{ form_row(form.period, {'label': 'Period selected'}) }}
+    </div>
+    <div class="col-lg-6 col-12 border-left">
+        {{ form_row(form.category, {'label': 'Category selected'}) }}
+    </div>
+    <div class="col-12 mt-5 text-center">
+        <button class="btn btn-warning">{{ button_label|default('Save') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

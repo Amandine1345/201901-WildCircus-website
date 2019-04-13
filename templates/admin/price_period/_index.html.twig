@@ -1,0 +1,33 @@
+<hr class="my-5">
+<h1>Periods index</h1>
+
+<p class="text-right">
+    <a href="{{ path('price_period_new') }}" role="button" class="btn btn-danger">
+        <i class="fas fa-calendar-alt mr-2"></i>Create new
+    </a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for pricePeriod in pricePeriods %}
+        <tr>
+            <td>{{ pricePeriod.name }}</td>
+            <td>
+                <a href="{{ path('price_period_edit', {'id': pricePeriod.id}) }}">
+                    <i class="fas fa-edit mr-2"></i> Edit
+                </a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
