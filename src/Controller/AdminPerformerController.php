@@ -99,6 +99,11 @@ class AdminPerformerController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($performer);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Your changes were saved!'
+            );
         }
 
         return $this->redirectToRoute('performer_index');
