@@ -61,7 +61,7 @@ class AdminPriceController extends AbstractController
      * @param PriceCategory|null $category
      * @return Response
      */
-    public function new(Request $request, PricePeriod $period  = null, PriceCategory $category = null): Response
+    public function new(Request $request, PricePeriod $period = null, PriceCategory $category = null): Response
     {
         $price = new Price();
         $form = $this->createForm(PriceType::class, $price, [
