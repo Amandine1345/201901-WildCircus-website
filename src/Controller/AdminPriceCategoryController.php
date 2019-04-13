@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/price/category")
  */
-class PriceCategoryController extends AbstractController
+class AdminPriceCategoryController extends AbstractController
 {
     /**
      * @Route("/new", name="price_category_new", methods={"GET","POST"})

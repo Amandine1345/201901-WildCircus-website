@@ -1,13 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Edit Price{% endblock %}
 
 {% block body %}
     <h1>Edit Price</h1>
+    <div class="row">
+        <div class="col-6">
+            <a href="{{ path('price_index') }}" role="button" class="btn btn-secondary">
+                <i class="fas fa-chevron-left mr-2"></i> Back to list
+            </a>
+        </div>
+        <div class="col-6 text-right">
+            {{ include('admin/price/_delete_form.html.twig') }}
+        </div>
+    </div>
 
-    {{ include('price/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/price/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('price_index') }}">back to list</a>
-
-    {{ include('price/_delete_form.html.twig') }}
 {% endblock %}

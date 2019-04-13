@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/price")
  */
-class PriceController extends AbstractController
+class AdminPriceController extends AbstractController
 {
     /**
      * @Route("/", name="price_index", methods={"GET"})
@@ -23,25 +23,51 @@ class PriceController extends AbstractController
     public function index(PriceRepository $priceRepository): Response
     {
         $pricePeriods = $this->getDoctrine()->getManager()->getRepository(PricePeriod::class)
-            ->findBy([],['name' => 'ASC']);
+            ->findBy([], ['name' => 'ASC']);
 
         $priceCategories = $this->getDoctrine()->getManager()->getRepository(PriceCategory::class)
-            ->findBy([],['name' => 'ASC']);
+            ->findBy([], ['name' => 'ASC']);
+
+        // get prices per period and category
+        $pricesTable = [];
+        for ($i = 0; $i < count($pricePeriods); $i++) {
+            $pricesTable[$i] = [
+                'period' => $pricePeriods[$i],
+                'details' => []
+            ];
+            foreach ($priceCategories as $category) {
+                $price = $priceRepository->findOneBy([
+                    'period' => $pricePeriods[$i]->getId(),
+                    'category' => $category->getId()
+                ], []);
+                array_push($pricesTable[$i]['details'], [
+                    'category' => $category->getId(),
+                    'price' => $price
+                ]);
+            }
+        }
 
         return $this->render('/admin/price/index.html.twig', [
-            'prices' => $priceRepository->findAll(),
+            'pricesTable' => $pricesTable,
             'pricePeriods' => $pricePeriods,
             'priceCategories' => $priceCategories
         ]);
     }
 
     /**
-     * @Route("/new", name="price_new", methods={"GET","POST"})
+     * @Route("/new/{period}/{category}", name="price_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param PricePeriod|null $period
+     * @param PriceCategory|null $category
+     * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, PricePeriod $period  = null, PriceCategory $category = null): Response
     {
         $price = new Price();
-        $form = $this->createForm(PriceType::class, $price);
+        $form = $this->createForm(PriceType::class, $price, [
+            'period' => $period,
+            'category' => $category
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,22 +75,17 @@ class PriceController extends AbstractController
             $entityManager->persist($price);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                'Your changes were saved!'
+            );
+
             return $this->redirectToRoute('price_index');
         }
 
-        return $this->render('price/new.html.twig', [
+        return $this->render('/admin/price/new.html.twig', [
             'price' => $price,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="price_show", methods={"GET"})
-     */
-    public function show(Price $price): Response
-    {
-        return $this->render('price/show.html.twig', [
-            'price' => $price,
         ]);
     }
 
@@ -73,18 +94,26 @@ class PriceController extends AbstractController
      */
     public function edit(Request $request, Price $price): Response
     {
-        $form = $this->createForm(PriceType::class, $price);
+        $form = $this->createForm(PriceType::class, $price, [
+            'period' => $price->getPeriod(),
+            'category' => $price->getCategory()
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'success',
+                'Your changes were saved!'
+            );
 
             return $this->redirectToRoute('price_index', [
                 'id' => $price->getId(),
             ]);
         }
 
-        return $this->render('price/edit.html.twig', [
+        return $this->render('/admin/price/edit.html.twig', [
             'price' => $price,
             'form' => $form->createView(),
         ]);
@@ -99,6 +128,11 @@ class PriceController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($price);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Your changes were saved!'
+            );
         }
 
         return $this->redirectToRoute('price_index');
