@@ -18,6 +18,12 @@ class DateShowType extends AbstractType
                 'required' => true,
                 'label' => 'Date & Hours',
                 'years' => [date('Y'), date('Y')+1, date('Y')+2],
+                'widget' => 'single_text',
+                'format' => 'MM/dd/yyyy HH:mm a',
+                'html5' => false,
+                'attr' => [
+                    'class' => 'datetimepicker'
+                ]
             ])
             ->add('city', TextType::class, [
                 'required' => true,

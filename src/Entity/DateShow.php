@@ -21,6 +21,7 @@ class DateShow
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
      * @Assert\DateTime()
+     * @var string A "MM/dd/yyyy HH:mm a" formatted value
      */
     private $date;
 

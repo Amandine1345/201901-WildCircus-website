@@ -94,7 +94,6 @@ class AdminDateShowController extends AbstractController
                 'success',
                 'Your changes were saved!'
             );
-
         }
 
         return $this->redirectToRoute('admin/date_show_index');
