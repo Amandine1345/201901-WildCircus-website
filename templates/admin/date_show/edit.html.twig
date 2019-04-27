@@ -1,13 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Edit DateShow{% endblock %}
+{% block title %}Edit Date Show{% endblock %}
 
 {% block body %}
-    <h1>Edit DateShow</h1>
+    <h1>Edit Date Show</h1>
+    <div class="row">
+        <div class="col-6">
+            <a href="{{ path('date_show_index') }}" role="button" class="btn btn-secondary">
+                <i class="fas fa-chevron-left mr-2"></i> Back to list
+            </a>
+        </div>
+        <div class="col-6 text-right">
+            {{ include('admin/date_show/_delete_form.html.twig') }}
+        </div>
+    </div>
 
-    {{ include('date_show/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('date_show_index') }}">back to list</a>
-
-    {{ include('date_show/_delete_form.html.twig') }}
+    {{ include('admin/date_show/_form.html.twig', {'button_label': 'Update'}) }}
 {% endblock %}

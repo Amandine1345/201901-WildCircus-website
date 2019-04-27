@@ -74,7 +74,7 @@ class AdminDateShowController extends AbstractController
             ]);
         }
 
-        return $this->render('date_show/edit.html.twig', [
+        return $this->render('admin/date_show/edit.html.twig', [
             'date_show' => $dateShow,
             'form' => $form->createView(),
         ]);

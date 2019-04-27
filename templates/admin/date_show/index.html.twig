@@ -22,10 +22,12 @@
         {% for date_show in date_shows %}
             <tr>
                 <td>{{ date_show.id }}</td>
-                <td>{{ date_show.date ? date_show.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ date_show.date ? date_show.date|date('Y-m-d H:i A') : '' }}</td>
                 <td>{{ date_show.city }}</td>
                 <td>
-                    <a href="{{ path('date_show_edit', {'id': date_show.id}) }}">edit</a>
+                    <a href="{{ path('date_show_edit', {'id': date_show.id}) }}">
+                        <i class="fas fa-edit mr-2"></i> Edit</a>
+                    </a>
                 </td>
             </tr>
         {% else %}

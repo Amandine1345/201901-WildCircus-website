@@ -27,7 +27,22 @@ class DateShowType extends AbstractType
             ])
             ->add('city', TextType::class, [
                 'required' => true,
-                'label'=> 'France\'s city'
+                'label'=> 'France\'s city',
+                'attr' => [
+                    'class' => 'city-selector'
+                ]
+            ])
+            ->add('longitude', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'readonly' => 'readonly'
+                ]
+            ])
+            ->add('latitude', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'readonly' => 'readonly'
+                ]
             ])
         ;
     }
