@@ -11,6 +11,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ path('date_show_index') }}">Shows &amp; Date</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('price_index') }}">Prices</a>
                 </li>
                 <li class="nav-item">
@@ -31,6 +34,8 @@
                            href="{{ path('admin_cms', {'cms_type': 'performers'}) }}">Performers</a>
                         <a class="dropdown-item"
                            href="{{ path('admin_cms', {'cms_type': 'performances'}) }}">Performances</a>
+                        <a class="dropdown-item"
+                           href="{{ path('admin_cms', {'cms_type': 'shows'}) }}">Shows</a>
                     </div>
                 </li>
 
