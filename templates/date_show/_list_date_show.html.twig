@@ -11,7 +11,7 @@
             </table>
         </div>
         <div class="col-6">
-            Carte
+            <div id="map" style="height: {{ height }};" data-shows="{{ dateShows|json_encode }}"></div>
         </div>
     </div>
 {% else %}
@@ -21,35 +21,36 @@
     </div>
 {% endif %}
 
-<div class="row mt-5">
-    <div class="col-12">
-        <h2>Prices</h2>
+{% if displayPrice %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2>Prices</h2>
+        </div>
+        <div class="col-12">
+            <table class="table table-striped table-bordered">
+                <thead class="text-center">
+                <th>Periods</th>
+                {% for category in priceCategories %}
+                    <th>{{ category.name }}</th>
+                {% endfor %}
+                </thead>
+                {% for list in pricesTable %}
+                    <tr>
+                        <td>{{ list.period.name }}</td>
+                        {% for detail in  list.details %}
+                            {% if detail.price|length > 0 %}
+                                <td>
+                                    <p class="font-weight-bold text-center mb-0">{{ detail.price.price }} &euro;</p>
+                                </td>
+                            {% else %}
+                                <td class="text-center">
+                                    -
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
-    <div class="col-12">
-        <table class="table table-striped table-bordered">
-            <thead class="text-center">
-            <th>Periods</th>
-            {% for category in priceCategories %}
-                <th>{{ category.name }}</th>
-            {% endfor %}
-            </thead>
-            {% for list in pricesTable %}
-                <tr>
-                    <td>{{ list.period.name }}</td>
-                    {% for detail in  list.details %}
-                        {% if detail.price|length > 0 %}
-                            <td>
-                                <p class="font-weight-bold text-center mb-0">{{ detail.price.price }} &euro;</p>
-                            </td>
-                        {% else %}
-                            <td class="text-center">
-                                -
-                            </td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
-    </div>
-</div>
-
+{% endif %}

@@ -33,7 +33,7 @@ class DateShowRepository extends ServiceEntityRepository
             $query->setMaxResults($limit);
         }
 
-        $query = $query->getQuery()->getResult();
+        $query = $query->getQuery()->getArrayResult();
 
         return $query;
     }
