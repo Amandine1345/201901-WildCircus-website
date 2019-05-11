@@ -19,32 +19,22 @@ class DateShowRepository extends ServiceEntityRepository
         parent::__construct($registry, DateShow::class);
     }
 
-    // /**
-    //  * @return DateShow[] Returns an array of DateShow objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param int $limit
+     * @return Array|null
+     */
+    public function findByDate(int $limit = null): ?Array
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $query = $this->createQueryBuilder('d')
+            ->where('d.date >= CURRENT_DATE()')
+            ->orderBy('d.date', 'ASC');
 
-    /*
-    public function findOneBySomeField($value): ?DateShow
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if (!is_null($limit)) {
+            $query->setMaxResults($limit);
+        }
+
+        $query = $query->getQuery()->getResult();
+
+        return $query;
     }
-    */
 }

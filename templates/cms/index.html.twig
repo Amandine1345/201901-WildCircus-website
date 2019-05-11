@@ -34,6 +34,8 @@
                         {% include 'performer/_list_performers.html.twig' %}
                     {% elseif cmsType == 'performances' %}
                         {% include 'performance/_list_performances.html.twig' %}
+                    {% elseif cmsType == 'shows' %}
+                        {% include 'date_show/_list_date_show.html.twig' %}
                     {% else %}
                         {{ cmsPage.fullDescription|raw }}
                     {% endif %}

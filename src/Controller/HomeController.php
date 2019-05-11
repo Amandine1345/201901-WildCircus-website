@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\DateShow;
 use App\Entity\Performance;
 use App\Entity\Performer;
 use App\Entity\Cms;
@@ -31,6 +32,9 @@ class HomeController extends AbstractController
         $performances = $this->getDoctrine()->getManager()->getRepository(Performance::class)
             ->findBy([], ['name' => 'ASC']);
 
+        $dateShows = $this->getDoctrine()->getManager()->getRepository(DateShow::class)
+            ->findByDate(5);
+
         shuffle($performers);
         $performers = array_slice($performers, 0, 4);
 
@@ -44,6 +48,7 @@ class HomeController extends AbstractController
             'performers' => $performers,
             'pathPicturePerformers' => $pathPicturePerformers,
             'performances' => $performances,
+            'dateShows' => $dateShows,
             'contactUs' => $formContactUs->createView()
         ]);
     }

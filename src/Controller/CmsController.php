@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Cms;
+use App\Entity\DateShow;
 use App\Entity\Performance;
 use App\Entity\Performer;
+use App\Entity\Price;
+use App\Entity\PriceCategory;
+use App\Entity\PricePeriod;
 use App\Form\ContactUsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +39,33 @@ class CmsController extends AbstractController
         $performances = $this->getDoctrine()->getManager()->getRepository(Performance::class)
             ->findAll();
 
+        $dateShows = $this->getDoctrine()->getManager()->getRepository(DateShow::class)
+            ->findByDate();
+        $pricePeriods = $this->getDoctrine()->getManager()->getRepository(PricePeriod::class)
+            ->findBy([], ['name' => 'ASC']);
+
+        $priceCategories = $this->getDoctrine()->getManager()->getRepository(PriceCategory::class)
+            ->findBy([], ['name' => 'ASC']);
+
+        // get prices per period and category
+        $pricesTable = [];
+        for ($i = 0; $i < count($pricePeriods); $i++) {
+            $pricesTable[$i] = [
+                'period' => $pricePeriods[$i],
+                'details' => []
+            ];
+            foreach ($priceCategories as $category) {
+                $price = $this->getDoctrine()->getManager()->getRepository(Price::class)->findOneBy([
+                    'period' => $pricePeriods[$i]->getId(),
+                    'category' => $category->getId()
+                ], []);
+                array_push($pricesTable[$i]['details'], [
+                    'category' => $category->getId(),
+                    'price' => $price
+                ]);
+            }
+        }
+
         $formContactUs = $this->createForm(ContactUsType::class);
 
         return $this->render('cms/index.html.twig', [
@@ -43,7 +74,11 @@ class CmsController extends AbstractController
             'performers' => $performers,
             'pathPicturePerformers' => $pathPicturePerformers,
             'performances' => $performances,
-            'contactUs' => $formContactUs->createView()
+            'dateShows' => $dateShows,
+            'contactUs' => $formContactUs->createView(),
+            'pricesTable' => $pricesTable,
+            'pricePeriods' => $pricePeriods,
+            'priceCategories' => $priceCategories
         ]);
     }
 }
