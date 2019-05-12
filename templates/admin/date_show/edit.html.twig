@@ -17,3 +17,8 @@
 
     {{ include('admin/date_show/_form.html.twig', {'button_label': 'Update'}) }}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('dateShow') }}
+{% endblock %}

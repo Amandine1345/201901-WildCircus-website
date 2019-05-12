@@ -20,10 +20,24 @@
                         {% if detail.price|length > 0 %}
                             <td>
                                 <p class="font-weight-bold text-center mb-0">{{ detail.price.price }} &euro;</p>
+                                {% if displayAdmin is defined and displayAdmin %}
+                                    <p class="text-right mb-0">
+                                        <a href="{{ path('price_edit', {'id': detail.price.id}) }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </p>
+                                {% endif %}
                             </td>
                         {% else %}
                             <td class="text-center">
-                                -
+                                {% if displayAdmin is defined and displayAdmin %}
+                                    <a href="{{ path('price_new', {'period': list.period.id, 'category': detail.category}) }}"
+                                       role="button" class="btn btn-danger">
+                                        <i class="fas fa-dollar-sign mr-2"></i> Add price
+                                    </a>
+                                {% else %}
+                                    -
+                                {% endif %}
                             </td>
                         {% endif %}
                     {% endfor %}

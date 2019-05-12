@@ -5,10 +5,15 @@
 {% block body %}
     <h1>Create new DateShow</h1>
     <p>
-        <a href="{{ path('performance_index') }}" role="button" class="btn btn-secondary">
+        <a href="{{ path('date_show_index') }}" role="button" class="btn btn-secondary">
             <i class="fas fa-chevron-left mr-2"></i> Back to list
         </a>
     </p>
     {{ include('admin/date_show/_form.html.twig') }}
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('dateShow') }}
 {% endblock %}

@@ -17,6 +17,8 @@ class AdminPricePeriodController extends AbstractController
 {
     /**
      * @Route("/new", name="price_period_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -45,6 +47,9 @@ class AdminPricePeriodController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="price_period_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param PricePeriod $pricePeriod
+     * @return Response
      */
     public function edit(Request $request, PricePeriod $pricePeriod): Response
     {
@@ -70,6 +75,9 @@ class AdminPricePeriodController extends AbstractController
 
     /**
      * @Route("/{id}", name="price_period_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param PricePeriod $pricePeriod
+     * @return Response
      */
     public function delete(Request $request, PricePeriod $pricePeriod): Response
     {

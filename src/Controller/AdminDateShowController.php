@@ -17,16 +17,20 @@ class AdminDateShowController extends AbstractController
 {
     /**
      * @Route("/", name="date_show_index", methods={"GET"})
+     * @param DateShowRepository $dateShowRepository
+     * @return Response
      */
     public function index(DateShowRepository $dateShowRepository): Response
     {
         return $this->render('admin/date_show/index.html.twig', [
-            'date_shows' => $dateShowRepository->findAll(),
+            'date_shows' => $dateShowRepository->findByDate(),
         ]);
     }
 
     /**
      * @Route("/new", name="date_show_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -55,6 +59,9 @@ class AdminDateShowController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="date_show_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param DateShow $dateShow
+     * @return Response
      */
     public function edit(Request $request, DateShow $dateShow): Response
     {
@@ -82,6 +89,9 @@ class AdminDateShowController extends AbstractController
 
     /**
      * @Route("/{id}", name="date_show_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param DateShow $dateShow
+     * @return Response
      */
     public function delete(Request $request, DateShow $dateShow): Response
     {
@@ -96,6 +106,6 @@ class AdminDateShowController extends AbstractController
             );
         }
 
-        return $this->redirectToRoute('admin/date_show_index');
+        return $this->redirectToRoute('date_show_index');
     }
 }

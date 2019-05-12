@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Performer;
+use Doctrine\Common\Annotations\AnnotationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +24,7 @@ class PerformerController extends AbstractController
      * @param Request $request
      * @param Performer $performer
      * @return Response
-     * @throws \Doctrine\Common\Annotations\AnnotationException
+     * @throws AnnotationException
      */
     public function show(Request $request, Performer $performer): Response
     {

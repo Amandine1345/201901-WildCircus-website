@@ -21,6 +21,7 @@ Encore
     .addEntry('admin', './assets/js/admin.js')
     .addEntry('map', './assets/js/map.js')
     .addEntry('performerModal', './assets/js/performerModal.js')
+    .addEntry('dateShow', './assets/js/dateShow.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
