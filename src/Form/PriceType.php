@@ -27,7 +27,7 @@ class PriceType extends AbstractType
                 'required' => true,
                 'class' => PricePeriod::class,
                 'choice_label' => 'name',
-                'query_builder' => function(EntityRepository $er) use ($options) {
+                'query_builder' => function (EntityRepository $er) use ($options) {
                     return $er->createQueryBuilder('e')
                         ->where('e.id = :period')
                         ->setParameter('period', $options['period']);
@@ -37,7 +37,7 @@ class PriceType extends AbstractType
                 'required' => true,
                 'class' => PriceCategory::class,
                 'choice_label' => 'name',
-                'query_builder' => function(EntityRepository $er) use ($options) {
+                'query_builder' => function (EntityRepository $er) use ($options) {
                     return $er->createQueryBuilder('e')
                         ->where('e.id = :category')
                         ->setParameter('category', $options['category']);

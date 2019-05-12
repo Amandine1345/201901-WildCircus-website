@@ -1,0 +1,41 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}DateShow index{% endblock %}
+
+{% block body %}
+    <h1>DateShow index</h1>
+    <p class="text-right">
+        <a href="{{ path('date_show_new') }}" role="button" class="btn btn-danger">
+            <i class="fas fa-crown mr-2"></i>Create new
+        </a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>City</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for date_show in date_shows %}
+            <tr>
+                <td>{{ date_show.id }}</td>
+                <td>{{ date_show.date ? date_show.date|date('Y-m-d H:i A') : '' }}</td>
+                <td>{{ date_show.city }}</td>
+                <td>
+                    <a href="{{ path('date_show_edit', {'id': date_show.id}) }}">
+                        <i class="fas fa-edit mr-2"></i> Edit</a>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -7,6 +7,7 @@ use App\Entity\PriceCategory;
 use App\Entity\PricePeriod;
 use App\Form\PriceType;
 use App\Repository\PriceRepository;
+use App\Service\PricesByPeriodsAndCategories;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,9 +20,14 @@ class AdminPriceController extends AbstractController
 {
     /**
      * @Route("/", name="price_index", methods={"GET"})
+     * @param PriceRepository $priceRepository
+     * @param PricesByPeriodsAndCategories $pricesByPeriodsAndCategories
+     * @return Response
      */
-    public function index(PriceRepository $priceRepository): Response
-    {
+    public function index(
+        PriceRepository $priceRepository,
+        PricesByPeriodsAndCategories $pricesByPeriodsAndCategories
+    ): Response {
         $pricePeriods = $this->getDoctrine()->getManager()->getRepository(PricePeriod::class)
             ->findBy([], ['name' => 'ASC']);
 
@@ -29,23 +35,7 @@ class AdminPriceController extends AbstractController
             ->findBy([], ['name' => 'ASC']);
 
         // get prices per period and category
-        $pricesTable = [];
-        for ($i = 0; $i < count($pricePeriods); $i++) {
-            $pricesTable[$i] = [
-                'period' => $pricePeriods[$i],
-                'details' => []
-            ];
-            foreach ($priceCategories as $category) {
-                $price = $priceRepository->findOneBy([
-                    'period' => $pricePeriods[$i]->getId(),
-                    'category' => $category->getId()
-                ], []);
-                array_push($pricesTable[$i]['details'], [
-                    'category' => $category->getId(),
-                    'price' => $price
-                ]);
-            }
-        }
+        $pricesTable = $pricesByPeriodsAndCategories->getTable($pricePeriods, $priceCategories);
 
         return $this->render('/admin/price/index.html.twig', [
             'pricesTable' => $pricesTable,
@@ -61,7 +51,7 @@ class AdminPriceController extends AbstractController
      * @param PriceCategory|null $category
      * @return Response
      */
-    public function new(Request $request, PricePeriod $period  = null, PriceCategory $category = null): Response
+    public function new(Request $request, PricePeriod $period = null, PriceCategory $category = null): Response
     {
         $price = new Price();
         $form = $this->createForm(PriceType::class, $price, [
@@ -91,6 +81,9 @@ class AdminPriceController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="price_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Price $price
+     * @return Response
      */
     public function edit(Request $request, Price $price): Response
     {
@@ -121,6 +114,9 @@ class AdminPriceController extends AbstractController
 
     /**
      * @Route("/{id}", name="price_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Price $price
+     * @return Response
      */
     public function delete(Request $request, Price $price): Response
     {

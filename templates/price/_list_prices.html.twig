@@ -1,0 +1,49 @@
+<div class="row mt-5">
+    <div class="col-12">
+        <h2>Prices</h2>
+    </div>
+    <div class="col-12 table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="text-center">
+            <tr>
+                <th>Periods</th>
+                {% for category in priceCategories %}
+                    <th>{{ category.name }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for list in pricesTable %}
+                <tr>
+                    <td>{{ list.period.name }}</td>
+                    {% for detail in  list.details %}
+                        {% if detail.price|length > 0 %}
+                            <td>
+                                <p class="font-weight-bold text-center mb-0">{{ detail.price.price }} &euro;</p>
+                                {% if displayAdmin is defined and displayAdmin %}
+                                    <p class="text-right mb-0">
+                                        <a href="{{ path('price_edit', {'id': detail.price.id}) }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </p>
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td class="text-center">
+                                {% if displayAdmin is defined and displayAdmin %}
+                                    <a href="{{ path('price_new', {'period': list.period.id, 'category': detail.category}) }}"
+                                       role="button" class="btn btn-danger">
+                                        <i class="fas fa-dollar-sign mr-2"></i> Add price
+                                    </a>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

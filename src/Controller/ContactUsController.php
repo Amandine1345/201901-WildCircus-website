@@ -26,6 +26,10 @@ class ContactUsController extends AbstractController
 
     /**
      * @Route("/contact/sendEmail", methods={"POST"})
+     * @param Request $request
+     * @param \Swift_Mailer $mailer
+     * @return Response
+     * @throws \Exception
      */
     public function sendEmail(Request $request, \Swift_Mailer $mailer): Response
     {

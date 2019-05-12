@@ -19,7 +19,6 @@
                             <button type="button" class="btn" data-toggle="modal"
                                     data-target="#performerModal"
                                     data-performer="{{ performer.id }}">
-
                                 {{ performer.name }}
                             </button>
                         </li>
@@ -28,7 +27,8 @@
             {% endif %}
         </div>
     </div>
-    {% include 'performer/_modal_performers.html.twig' %}
 {% else %}
     <p>No performance...</p>
 {% endfor %}
+
+{% include 'performer/_modal_performers.html.twig' %}
