@@ -19,12 +19,12 @@ class HomeController extends AbstractController
      * @param UploaderHelper $uploaderHelper
      * @return Response
      */
-    public function index(UploaderHelper $uploaderHelper) : Response
+    public function index(UploaderHelper $uploaderHelper): Response
     {
         $cms = new Cms();
 
         $aboutUs = $this->getDoctrine()->getManager()->getRepository(Cms::class)
-            ->findOneBy(['cmsType' => $cms->getCmsTypeKey('aboutus')]);
+            ->findOneBy(['cmsType' => $cms->getCmsTypeKey($cms::CMS_TYPE[0])]);
 
         $performers = $this->getDoctrine()->getManager()->getRepository(Performer::class)
             ->findAll();
@@ -35,13 +35,14 @@ class HomeController extends AbstractController
         $dateShows = $this->getDoctrine()->getManager()->getRepository(DateShow::class)
             ->findByDate(5);
 
+        $formContactUs = $this->createForm(ContactUsType::class);
+
+        // display randomly performers
         shuffle($performers);
         $performers = array_slice($performers, 0, 4);
 
         $pathPicturePerformers = $uploaderHelper->asset($performers[0], 'pictureFile');
         $pathPicturePerformers = str_replace($performers[0]->getPicture(), '', $pathPicturePerformers);
-
-        $formContactUs = $this->createForm(ContactUsType::class);
 
         return $this->render('home/index.html.twig', [
             'aboutUs' => $aboutUs,

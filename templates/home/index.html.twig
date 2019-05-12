@@ -73,10 +73,9 @@
                     <h2>Shows</h2>
                 </div>
                 <div class="col-12">
-                    {% set height = '250px'  %}
-                    {% set displayPrice = false  %}
+                    {% set height = '250px' %}
+                    {% set displayPrice = false %}
                     {% include 'date_show/_list_date_show.html.twig' %}
-
                     <div class="row">
                         <div class="col-12 mt-3 text-center">
                             <a href="{{ path('cms', {'cms_type': 'shows'}) }}" role="button" class="btn btn-dark">
@@ -92,7 +91,8 @@
         <div class="row">
             {% for performance in performances %}
                 <div class="col-lg-4 col-md-6 col-12 p-0 home-performance">
-                    <a href="{{ path('cms', {'cms_type': 'performances'}) }}#{{ performance.id }}" class="d-block text-center text-white">
+                    <a href="{{ path('cms', {'cms_type': 'performances'}) }}#{{ performance.id }}"
+                       class="d-block text-center text-white">
                         <img src="{{ vich_uploader_asset(performance, 'pictureFile') }}" class="w-100"
                              alt="{{ performance.name }}"/>
                         <div class="performance-caption">
@@ -104,7 +104,10 @@
             {% endfor %}
         </div>
     </section>
+{% endblock %}
 
-    {% include '_footer.html.twig' %}
-
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('performerModal') }}
+    {{ encore_entry_script_tags('map') }}
 {% endblock %}

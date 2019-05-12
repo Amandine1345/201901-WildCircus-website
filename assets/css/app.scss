@@ -11,8 +11,9 @@ $fontBrand : 'Courgette', cursive;
 /* COLORS */
 $colorHr: #dc3545;
 $colorWhite: #FFFFFF;
+$colorDark: #000000;
 $colorMastheadH1Shadow : #000000;
-$colorBackgroundMastheadP : rgba(0,0,0,0.8);
+$colorBackgroundMastheadP : rgba(220, 53, 69, 0.8);
 $colorBackgroundPerformance : rgba(220, 53, 69, 0.6);
 $colorLinkFooter: #000;
 $colorLinkFooterHover: rgba(0, 0, 0, 0.5);
@@ -94,7 +95,6 @@ h3 {
 }
 
 .home-performance {
-
   img {
     filter: grayscale(1);
     -webkit-filter: grayscale(1);
@@ -133,6 +133,13 @@ h3 {
       color: $colorLinkFooterHover;
     }
   }
-
 }
 
+@media (max-width: 992px) {
+  .home-performance {
+    .performance-caption {
+      opacity: 1;
+      border-bottom: 1px dashed $colorDark;
+    }
+  }
+}
