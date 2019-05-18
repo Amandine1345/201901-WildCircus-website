@@ -9,37 +9,41 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('date_show_index') }}">Shows &amp; Date</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('price_index') }}">Prices</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('performer_index') }}">Performers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('performance_index') }}">Performances</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarCMS" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Pages CMS
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarCMS">
-                        <a class="dropdown-item" href="{{ path('admin_cms', {'cms_type': 'aboutus'}) }}">About Us</a>
-                        <a class="dropdown-item"
-                           href="{{ path('admin_cms', {'cms_type': 'performers'}) }}">Performers</a>
-                        <a class="dropdown-item"
-                           href="{{ path('admin_cms', {'cms_type': 'performances'}) }}">Performances</a>
-                        <a class="dropdown-item"
-                           href="{{ path('admin_cms', {'cms_type': 'shows'}) }}">Shows</a>
-                    </div>
-                </li>
-
-            </ul>
+            {% if is_granted('ROLE_ADMIN') %}
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('date_show_index') }}">Shows &amp; Date</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('price_index') }}">Prices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('performer_index') }}">Performers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('performance_index') }}">Performances</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarCMS" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Pages CMS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarCMS">
+                            <a class="dropdown-item" href="{{ path('admin_cms', {'cms_type': 'aboutus'}) }}">
+                                About Us</a>
+                            <a class="dropdown-item"
+                               href="{{ path('admin_cms', {'cms_type': 'performers'}) }}">Performers</a>
+                            <a class="dropdown-item"
+                               href="{{ path('admin_cms', {'cms_type': 'performances'}) }}">Performances</a>
+                            <a class="dropdown-item"
+                               href="{{ path('admin_cms', {'cms_type': 'shows'}) }}">Shows</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_index') }}">Administrators</a>
+                    </li>
+                </ul>
+            {% endif %}
         </div>
     </div>
 </nav>
