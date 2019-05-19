@@ -6,7 +6,6 @@ use App\Entity\Cms;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
-use phpDocumentor\Reflection\Types\Self_;
 
 class CmsFixtures extends Fixture
 {
@@ -19,7 +18,7 @@ class CmsFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create('en_EN');
+        $faker = Faker\Factory::create('fr_FR');
 
         foreach (self::CMS_TYPE as $type) {
             $cms = new Cms();
