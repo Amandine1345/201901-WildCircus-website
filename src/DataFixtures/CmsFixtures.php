@@ -18,7 +18,7 @@ class CmsFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create('fr_FR');
+        $faker = Faker\Factory::create('en_EN');
 
         foreach (self::CMS_TYPE as $type) {
             $cms = new Cms();
@@ -37,11 +37,8 @@ class CmsFixtures extends Fixture
                 $fullDescription .= '<p>' . $faker->paragraphs(3, true) . '</p>';
                 $cms->setFullDescription($fullDescription);
             }
-
             $manager->persist($cms);
-            $manager->flush();
         }
-
 
         $manager->flush();
     }

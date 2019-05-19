@@ -22,7 +22,7 @@ class DateShowFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create('fr_FR');
+        $faker = Faker\Factory::create('en_EN');
 
         foreach (self::DATE_SHOW as $show) {
             $dateShow = new DateShow();
@@ -31,7 +31,7 @@ class DateShowFixtures extends Fixture
             $dateShow->setLongitude($show[1]);
             $dateShow->setLatitude($show[2]);
             $manager->persist($dateShow);
-            $manager->flush();
         }
+        $manager->flush();
     }
 }
