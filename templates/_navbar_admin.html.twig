@@ -39,8 +39,15 @@
                                href="{{ path('admin_cms', {'cms_type': 'shows'}) }}">Shows</a>
                         </div>
                     </li>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('user_index') }}">Administrators</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('user_index') }}">Administrators</a>
+                        <a class="nav-link" href="{{ path('app_logout') }}">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
                     </li>
                 </ul>
             {% endif %}

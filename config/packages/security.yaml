@@ -2,6 +2,9 @@ security:
     encoders:
         App\Entity\User:
             algorithm: argon2i
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+    access_denied_url: /login
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -34,5 +37,5 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: [ROLE_SUPER_ADMIN, ROLE_ADMIN] }
         # - { path: ^/profile, roles: ROLE_USER }

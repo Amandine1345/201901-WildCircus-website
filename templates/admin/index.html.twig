@@ -1,7 +1,72 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Admin - {{ parent() }}{% endblock %}
 
 {% block body %}
-
+    <div class="row">
+        <div class="col-12">
+            <h1>Welcome !</h1>
+            <p>Please, choose an action...</p>
+        </div>
+        <div class="col-lg-3 col-md-6 col-12">
+            <div class="card border mb-3 shadow">
+                <div class="card-body">
+                    <p class="card-title font-weight-bold text-center">
+                        Shows & Dates
+                    </p>
+                    <hr>
+                    <p class="text-center">
+                        <a href="{{ path('date_show_index') }}">
+                            <i class="fas fa-crown fa-4x text-danger"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-12">
+            <div class="card border mb-3 shadow">
+                <div class="card-body">
+                    <p class="card-title font-weight-bold text-center">
+                        Prices
+                    </p>
+                    <hr>
+                    <p class="text-center">
+                        <a href="{{ path('price_index') }}">
+                            <i class="fas fa-dollar-sign fa-4x text-danger"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-12">
+            <div class="card border mb-3 shadow">
+                <div class="card-body">
+                    <p class="card-title font-weight-bold text-center">
+                        Performers
+                    </p>
+                    <hr>
+                    <p class="text-center">
+                        <a href="{{ path('performer_index') }}">
+                            <i class="fas fa-user fa-4x text-danger"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-12">
+            <div class="card border mb-3 shadow">
+                <div class="card-body">
+                    <p class="card-title font-weight-bold text-center">
+                        Performances
+                    </p>
+                    <hr>
+                    <p class="text-center">
+                        <a href="{{ path('performance_index') }}">
+                            <i class="fas fa-dumbbell fa-4x text-danger"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
