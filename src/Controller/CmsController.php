@@ -52,8 +52,10 @@ class CmsController extends AbstractController
 
         $formContactUs = $this->createForm(ContactUsType::class);
 
-        $pathPicturePerformers = $uploaderHelper->asset($performers[0], 'pictureFile');
-        $pathPicturePerformers = str_replace($performers[0]->getPicture(), '', $pathPicturePerformers);
+        if ($performers) {
+            $pathPicturePerformers = $uploaderHelper->asset($performers[0], 'pictureFile');
+            $pathPicturePerformers = str_replace($performers[0]->getPicture(), '', $pathPicturePerformers);
+        }
 
         // get prices per period and category
         $pricesTable = $pricesByPeriodsAndCategories->getTable($pricePeriods, $priceCategories);
@@ -62,7 +64,7 @@ class CmsController extends AbstractController
             'cmsPage' => $cmsPage,
             'cmsType' => $cms_type,
             'performers' => $performers,
-            'pathPicturePerformers' => $pathPicturePerformers,
+            'pathPicturePerformers' => $pathPicturePerformers ?? '',
             'performances' => $performances,
             'dateShows' => $dateShows,
             'contactUs' => $formContactUs->createView(),

@@ -38,16 +38,18 @@ class HomeController extends AbstractController
         $formContactUs = $this->createForm(ContactUsType::class);
 
         // display randomly performers
-        shuffle($performers);
-        $performers = array_slice($performers, 0, 4);
+        if ($performers) {
+            shuffle($performers);
+            $performers = array_slice($performers, 0, 4);
 
-        $pathPicturePerformers = $uploaderHelper->asset($performers[0], 'pictureFile');
-        $pathPicturePerformers = str_replace($performers[0]->getPicture(), '', $pathPicturePerformers);
+            $pathPicturePerformers = $uploaderHelper->asset($performers[0], 'pictureFile');
+            $pathPicturePerformers = str_replace($performers[0]->getPicture(), '', $pathPicturePerformers);
+        }
 
         return $this->render('home/index.html.twig', [
             'aboutUs' => $aboutUs,
             'performers' => $performers,
-            'pathPicturePerformers' => $pathPicturePerformers,
+            'pathPicturePerformers' => $pathPicturePerformers ?? '',
             'performances' => $performances,
             'dateShows' => $dateShows,
             'contactUs' => $formContactUs->createView()
