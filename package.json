@@ -19,7 +19,7 @@
         "codemirror": "^5.43.0",
         "core-js": "3",
         "flag-icon-css": "^3.2.1",
-        "jquery": "^3.4.0",
+        "jquery": "^3.5.0",
         "jquery-ui-bundle": "^1.12.1-migrate",
         "leaflet": "^1.5.1",
         "popper.js": "^1.14.6",
